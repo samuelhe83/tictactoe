@@ -18,11 +18,28 @@ var findAvailableMoves = function(board) {
     return 'No more available moves.'
   } else {
     return 'The available moves are' + availableMoves.slice(0, availableMoves.length - 1);
-
   }
 };
 
 
-console.log(findAvailableMoves(board));
+var chooseMove = function(player, position, board) {
+  var boardPositions = {
+    1: board[0][0],
+    2: board[0][1],
+    3: board[0][2],
+    4: board[1][0],
+    5: board[1][1],
+    6: board[1][2],
+    7: board[2][0],
+    8: board[2][1],
+    9: board[2][2]
+  };
+
+  if (player === 'X' && boardPositions[position] === 0) {
+    boardPositions[position] = 'X';
+  } else if (player === 'O' && boardPositions[position] === 0) {
+    boardPositions[position = 'O'];
+  }
+};
 
 
