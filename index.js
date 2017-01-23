@@ -1,3 +1,10 @@
+var readline = require('readline');
+
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 console.log('Initializing board');
 var board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
@@ -15,12 +22,28 @@ var findAvailableMoves = function(board) {
     }
   }
   if (availableMoves.length === 0) {
-    return 'No more available moves.'
+    return 'No more available moves.';
   } else {
     return 'The available moves are' + availableMoves.slice(0, availableMoves.length - 1);
   }
 };
 
+var checkWinner = function(board) {
+  var boardPositions = {
+    1: board[0][0],
+    2: board[0][1],
+    3: board[0][2],
+    4: board[1][0],
+    5: board[1][1],
+    6: board[1][2],
+    7: board[2][0],
+    8: board[2][1],
+    9: board[2][2]
+  };
+  if (boardPositions[1] === boardPositions[2] === boardPositions[3] === 'O') {
+
+  }
+};
 
 var chooseMove = function(player, position, board) {
   var boardPositions = {
@@ -38,8 +61,19 @@ var chooseMove = function(player, position, board) {
   if (player === 'X' && boardPositions[position] === 0) {
     boardPositions[position] = 'X';
   } else if (player === 'O' && boardPositions[position] === 0) {
-    boardPositions[position = 'O'];
+    boardPositions[position] = 'O';
   }
 };
+console.log(findAvailableMoves(board));
+var currentPlayer = 'X';
+
+rl.question(currentPlayer + ' choose your place.', function(answer) {
+  chooseMove(currentPlayer, answer, board);
+  if (currentPlayer === 'X') {
+    currentPlayer = 'O';
+  } else {
+    currentPlayer = 'X';
+  }
+});
 
 
